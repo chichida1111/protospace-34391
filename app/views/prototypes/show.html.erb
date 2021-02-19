@@ -47,7 +47,7 @@
         <ul class="comments_lists">
           <%# 投稿に紐づくコメントを一覧する処理を記述する %>
             <li class="comments_list">
-              <%= @comments.each do |comment| %>
+              <% @comments.each do |comment| %>
                <p> 
                  <%= comment.text %> 
                  <%= link_to "（#{current_user.name}）", user_path(current_user.id), class: :comment_user %>

@@ -15,9 +15,9 @@ class PrototypesController < ApplicationController
 
   def show
     @comment = Comment.new
-    @comments = @prototype.comments.includes(:user)
+    @comments = @prototype.comments
   end
-
+  
   def edit
   end
 
@@ -26,7 +26,7 @@ class PrototypesController < ApplicationController
     if prototype.update(prototype_params)
       redirect_to prototype_path(prototype.id), method: :get
     else
-      rendr :edit
+      render :edit
     end
   end
 
@@ -53,8 +53,8 @@ class PrototypesController < ApplicationController
   end
 
   def move_to_index
-    unless user_signed_in?
-      redirect_to action: :index
+    if user_signed_in?
+      redirect_to root_path
     end
   end
 
